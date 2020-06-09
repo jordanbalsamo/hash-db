@@ -1,4 +1,4 @@
-CREATE OR ALTER PROCEDURE [dbo].[sp_hash_db]
+CREATE OR ALTER PROCEDURE [sp_hash_db]
 AS
 
 --THIS SCRIPT DEPENDS ON sp_hash_tables
