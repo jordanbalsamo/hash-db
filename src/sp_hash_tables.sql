@@ -1,4 +1,4 @@
-CREATE OR ALTER PROCEDURE sp_HashTables_v4 @targetTable VARCHAR(100), @saltValue VARCHAR(512), @targetFields VARCHAR(MAX) AS
+CREATE OR ALTER PROCEDURE sp_hash_tables @targetTable VARCHAR(100), @saltValue VARCHAR(512), @targetFields VARCHAR(MAX) AS
 
 
 --------------------------------------------------

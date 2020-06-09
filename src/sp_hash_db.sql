@@ -1,7 +1,7 @@
-CREATE OR ALTER PROCEDURE [dbo].[sp_HashDB_v4]
+CREATE OR ALTER PROCEDURE [dbo].[sp_hash_db]
 AS
 
---THIS SCRIPT DEPENDS ON sp_HashTables_v4
+--THIS SCRIPT DEPENDS ON sp_hash_tables
 ---------------------------------------------------
 --Author: Jordan Balsamo						 --
 --Version: v4									 --
@@ -50,7 +50,7 @@ BEGIN
 	BEGIN TRY
 		BEGIN TRANSACTION
 
-		EXEC sp_HashTables_v4 @targetTable = @table, @saltValue = @salt, @targetFields = 'customer_name,customer_gender,customer_dob'
+		EXEC sp_hash_tables @targetTable = @table, @saltValue = @salt, @targetFields = 'customer_name,customer_gender,customer_dob'
 
 		COMMIT
 
@@ -59,7 +59,7 @@ BEGIN
 	END TRY
 	BEGIN CATCH
 		ROLLBACK;
-		THROW 51000, 'Error occured in sp_HashDB_v4', 1;
+		THROW 51000, 'Error occured in sp_hash_db', 1;
 	END CATCH
 
 	DELETE FROM #TEMP_TABLES WHERE Id = @rowId
