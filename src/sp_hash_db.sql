@@ -50,7 +50,7 @@ BEGIN
 	BEGIN TRY
 		BEGIN TRANSACTION
 
-		EXEC sp_hash_tables @targetTable = @table, @saltValue = @salt, @targetFields = 'customer_name,customer_gender,customer_dob'
+		EXEC [sp_hash_tables] @targetTable = @table, @saltValue = @salt, @targetFields = 'customer_name,customer_gender,customer_dob'
 
 		COMMIT
 
