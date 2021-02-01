@@ -1,9 +1,9 @@
 # HashDB
-A set of SQL SPs to hash an entire database.
+A set of SQL SPs to recursively hash given columns throughout a given database.
 
 ## Inputs
 
-The top-level SP (sp_HashDB_v4) takes two arguments:
+The top-level SP (sp_hash_db) takes two arguments:
 
 - **@targetTable**: this is an iterable that is generated in the SP itself. If you need to alter the scope of tables to be hashed, add your conditions to the WHERE clause.
 - **@salt**: set this in the SP. This is the value that will be prepended to the column value, prior to hashing. If it is left blank - '' - there will be no salt added to the hash process. 
@@ -12,16 +12,16 @@ The top-level SP (sp_HashDB_v4) takes two arguments:
         'name,address,telephone' will work;
         'name, address, telephone' will not work.
 
-The bottom level SP (sp_HashTables_v4) should not require any further configuration prior to running.
+The bottom level SP (sp_hash_tables) should not require any further configuration prior to running.
 
 ## Outputs
 
-The database will be hashed according to the inputs you provide above. 
+The database will be hashed according to the inputs you provide above.
 
-The only quirk of the hashing process is that columns that were supplied as datetime data types will be converted to UNIX Epoch timestamps and then hashed. If comparing or joining on hashes, any date times in the comparison dataset will need to be converted to UNIX Epoch timestamps first, then hashed, to ensure hash equivalence.
+It is worth noting that target hash of type datetime will be converted to UNIX Epoch timestamps and then hashed with the given algorithm. If comparing or joining on hashes, any date times in the comparison dataset will need to be converted to UNIX Epoch timestamps first and then hashed with the same algorithm, to ensure hash equivalence.
 
 ## TODO:
 
 1. Add support for passing in other hashing algorithms;
-2. Test against broader set of datatypes.
+2. Unit testing of functionality to be added.
 
